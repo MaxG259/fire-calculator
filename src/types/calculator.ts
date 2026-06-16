@@ -7,7 +7,7 @@ export type EntryT = {
 
 export const CATEGORIES = [
   'income',
-  'FixedExpenses',
+  'fixedExpenses',
   'inflatingExpenses',
   'savings',
   'investments',
@@ -17,7 +17,7 @@ export type CategoryT = (typeof CATEGORIES)[number]
 
 export type CalculatorT = {
   income: EntryT[]
-  FixedExpenses: EntryT[]
+  fixedExpenses: EntryT[]
   inflatingExpenses: EntryT[]
   savings: EntryT[]
   investments: EntryT[]
