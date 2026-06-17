@@ -2,26 +2,28 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 import { transliterate as tr } from 'transliteration'
 import { v4 as uuidv4 } from 'uuid'
-import type { CalculatorT, EntryT } from '../../types/calculator'
+import type { EntryT } from '../../types/calculator'
 import { CATEGORIES, keyIsArrayCategory } from '../../types/calculator'
+import calculateRemaining from '../../utils/calculateRamaining'
+import { initialCalculator } from '../../utils/initCalculator'
 
-const initialState: CalculatorT = {
-  income: [],
-  fixedExpenses: [],
-  inflatingExpenses: [],
-  savings: [],
-  investments: [],
-  remaining: {
-    id: 'remaining',
-    name: 'Remaining',
-    value: 0,
-    type: 'Остаток',
-  },
-}
+// const initialState: CalculatorT = {
+//   income: [],
+//   fixedExpenses: [],
+//   inflatingExpenses: [],
+//   savings: [],
+//   investments: [],
+//   remaining: {
+//     id: 'remaining',
+//     name: 'Remaining',
+//     value: 0,
+//     type: 'Остаток',
+//   },
+// }
 
 export const calculatorSlice = createSlice({
   name: 'calculator',
-  initialState,
+  initialState: initialCalculator,
   reducers: {
     addEntry: (
       state,
@@ -36,16 +38,17 @@ export const calculatorSlice = createSlice({
         value: 0,
       })
     },
-    deleteEntry: (
-      state,
-      action: PayloadAction<EntryT['id']>) => {
-        for (const category of CATEGORIES) {
-          const targetIndex = state[category].findIndex(entry => entry.id === action.payload)
-          if (targetIndex !== -1) {
-            state[category].splice(targetIndex, 1)
-            return
-          }
+    deleteEntry: (state, action: PayloadAction<EntryT['id']>) => {
+      for (const category of CATEGORIES) {
+        const targetIndex = state[category].findIndex(
+          (entry) => entry.id === action.payload
+        )
+        if (targetIndex !== -1) {
+          state[category].splice(targetIndex, 1)
+          break
         }
+      }
+      state.remaining.value = calculateRemaining(state)
     },
     changeEntryValue: (state, action: PayloadAction<EntryT>) => {
       const { id, value } = action.payload
@@ -53,13 +56,15 @@ export const calculatorSlice = createSlice({
         const targetEntry = state[category].find((entry) => entry.id === id)
         if (targetEntry) {
           targetEntry.value = value
-          return
+          break
         }
       }
-    }
+      state.remaining.value = calculateRemaining(state)
+    },
   },
-});
+})
 
-export const { addEntry, deleteEntry, changeEntryValue } = calculatorSlice.actions
+export const { addEntry, deleteEntry, changeEntryValue } =
+  calculatorSlice.actions
 
 export default calculatorSlice.reducer

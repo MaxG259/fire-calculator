@@ -1,8 +1,9 @@
 import { Container, Grid, Typography } from '@mui/material'
+import AddEntryModal from './components/Entry/AddEntryModal/AddEntryModal'
 import CategoryColumn from './components/Entry/CategoryColumn/CategoryColumn'
 import Entry from './components/Entry/Entry'
 import { useAppSelector } from './redux/hooks'
-import { CATEGORIES } from './types/calculator'
+import { CATEGORY_WITH_TEXT } from './types/calculator'
 
 function App() {
   const entry = useAppSelector((store) => store.calculator.remaining)
@@ -14,15 +15,15 @@ function App() {
         </Grid>
       </Grid>
       <Grid container spacing={2}>
-        {CATEGORIES.map((category) => (
-          <Grid key={category} size={4}>
-            <CategoryColumn category={category} />
+        {CATEGORY_WITH_TEXT.map((category) => (
+          <Grid key={category.value} size={4}>
+            <CategoryColumn category={category.value} text={category.text} />
           </Grid>
         ))}
         <Grid key='remaining' size={4}>
           <Grid container>
             <Grid key={`category remaining`} size={12}>
-              <Typography>remaining</Typography>
+              <Typography variant='h6'>Остаток</Typography>
             </Grid>
             <Grid size={12} key={entry.id}>
               <Entry entry={entry} />
@@ -30,6 +31,7 @@ function App() {
           </Grid>
         </Grid>
       </Grid>
+      <AddEntryModal />
     </Container>
   )
 }

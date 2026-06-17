@@ -13,6 +13,14 @@ export const CATEGORIES = [
   'investments',
 ] as const
 
+export const CATEGORY_WITH_TEXT = [
+  { value: 'income', text: 'Доходы' },
+  { value: 'fixedExpenses', text: 'Постоянные расходы' },
+  { value: 'inflatingExpenses', text: 'Растущие расходы' },
+  { value: 'savings', text: 'Сбережения' },
+  { value: 'investments', text: 'Инвестиции' },
+] as const
+
 export type CategoryT = (typeof CATEGORIES)[number]
 
 export type CalculatorT = {

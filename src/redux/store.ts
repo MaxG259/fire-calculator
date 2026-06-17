@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import calculatorReducer from './slices/calculator'
+import modalSlice from './slices/modal'
 
 export const store = configureStore({
   reducer: {
     calculator: calculatorReducer,
+    modal: modalSlice,
   },
 })
 
