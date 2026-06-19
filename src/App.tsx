@@ -2,6 +2,7 @@ import { Container, Grid, Typography } from '@mui/material'
 import AddEntryModal from './components/Entry/AddEntryModal/AddEntryModal'
 import CategoryColumn from './components/Entry/CategoryColumn/CategoryColumn'
 import Entry from './components/Entry/Entry'
+import PlotsWrapper from './components/Plots/PlotsWrapper'
 import { useAppSelector } from './redux/hooks'
 import { CATEGORY_WITH_TEXT } from './types/calculator'
 
@@ -11,7 +12,7 @@ function App() {
     <Container>
       <Grid container spacing={2}>
         <Grid size={12}>
-          <h2>Графики</h2>
+          <PlotsWrapper />
         </Grid>
       </Grid>
       <Grid container spacing={2}>

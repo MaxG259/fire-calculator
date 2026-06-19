@@ -30,6 +30,10 @@ export type CalculatorT = {
   savings: EntryT[]
   investments: EntryT[]
   remaining: EntryT
+  months: number
+  annualInflationRate: number
+  annualInvestmentRate: number
+  annualIncomeIncrease: number
 }
 
 export function keyIsArrayCategory(key: string): key is CategoryT {

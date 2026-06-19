@@ -25,6 +25,8 @@ const inflatingExpenses = [
   { id: uuidv4(), name: 'Транспорт', value: 7000, type: 'expense' },
 ]
 
+export const MAX_MONTHS = 360
+
 export const initialCalculator: CalculatorT = {
   income,
   fixedExpenses,
@@ -37,4 +39,8 @@ export const initialCalculator: CalculatorT = {
     value: 100000 + 20000 - 20000 - 3000 - 10000 - 5000 - 20000 - 7000,
     type: 'Остаток',
   },
+  months: MAX_MONTHS,
+  annualInflationRate: 0.12,
+  annualInvestmentRate: 0.15,
+  annualIncomeIncrease: 0.05,
 }

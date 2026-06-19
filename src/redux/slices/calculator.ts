@@ -61,10 +61,13 @@ export const calculatorSlice = createSlice({
       }
       state.remaining.value = calculateRemaining(state)
     },
+      changeMonths: (state, action: PayloadAction<number>) => {
+      state.months = action.payload
+    },
   },
 })
 
-export const { addEntry, deleteEntry, changeEntryValue } =
+export const { addEntry, deleteEntry, changeEntryValue, changeMonths } =
   calculatorSlice.actions
 
 export default calculatorSlice.reducer
