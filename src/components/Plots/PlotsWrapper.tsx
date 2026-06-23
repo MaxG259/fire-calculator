@@ -26,6 +26,7 @@ export default function PlotsWrapper() {
             marks={[
               { value: 0, label: '0' },
               { value: MAX_MONTHS, label: `${MAX_MONTHS}` },
+              { value: months, label: `${months}` },
             ]}
           />
         </Stack>
