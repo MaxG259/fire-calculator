@@ -2,6 +2,7 @@ import { Grid, Slider, Stack } from '@mui/material'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { changeMonths } from '../../redux/slices/calculator'
 import { MAX_MONTHS } from '../../utils/initCalculator'
+import GrowthChart from './GrowthChart/GrowthChart'
 import InvestmentsChart from './InvestmentsChart/InvestmentsChart'
 
 export default function PlotsWrapper() {
@@ -11,6 +12,9 @@ export default function PlotsWrapper() {
     <Grid container spacing={2}>
       <Grid size={6}>
         <InvestmentsChart />
+      </Grid>
+      <Grid size={6}>
+        <GrowthChart />
       </Grid>
       <Grid size={12}>
         <Stack spacing={2} direction='row' sx={{ alignItems: 'center', m: 5 }}>
